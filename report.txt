@@ -1,6 +1,3 @@
-Link to the code: 
-https://colab.research.google.com/drive/1tdM2vAUv0KKt9tGuqkBtZV6bYdkHbC5U?usp=sha
-ring 
 
 Methods of Optimization: 
 Four methods were coded :  - 
