@@ -98,16 +98,6 @@ When entering a function, use Python expression syntax:
 
 ### Running the code
 
-```bash
-# Clone and open in Colab or run locally
-git clone https://github.com/your-username/optimization-algorithms.git
-cd optimization-algorithms
-python or2_assignment_3.py
-```
-
-Or open directly in Google Colab:
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1tdM2vAUv0KKt9tGuqkBtZV6bYdkHbC5U?usp=sharing)
-
 ### Example session
 
 ```
@@ -153,7 +143,7 @@ optimization-algorithms/
 │
 ├── algo.py     # Main script (all four methods)
 ├── OR2_Assignment_3.ipynb  # Google Colab notebook
-├── report.pdf              # Written analysis and methodology
+├── report.txt              # Written analysis and methodology
 └── README.md
 ```
 
@@ -167,11 +157,3 @@ math    # standard library — no external dependencies required
 ```
 
 ---
-
-## Authors
-
-- Jalli Raja Nandini (24IM10003)
-- Munnam Krishna Gargee (24IM10046)
-- Sri Vaishnavi Viswanathan (24IM10061)
-
-B.Tech. Industrial and Systems Engineering — IIT Kharagpur (2028)
