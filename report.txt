@@ -1,0 +1,103 @@
+Link to the code: 
+https://colab.research.google.com/drive/1tdM2vAUv0KKt9tGuqkBtZV6bYdkHbC5U?usp=sha
+ring 
+
+Methods of Optimization: 
+Four methods were coded :  - 
+Bisection method - - - 
+Golden section method 
+Fibonacci method 
+Steepest ascent method 
+Input: 
+At the beginning of the code, the input needed is the function, the lower and upper 
+bounds and the tolerance /  error .  
+Note: 
+If the function is a multiple degree polynomial like “ 2x - x^3 + 3 ” enter it as “ 
+2*x - x**3 + 3 ”. The lower bound is entered into a and the upper bound into b. 
+The tolerance/error is input into tol. 
+Bisection method: 
+This code implements the bisection method to find roots of a function using a 
+string-based function input. 
+First, it creates f = lambda x: eval(func_str) to turn the string (like "x**2 - 2") into an evaluable function. The function is taken in terms of x. A key condition 
+is checked, i.e., (f(a)*f(b)>0) since they should not be of the same sign. 
+iteration = 0 starts the counter. 
+t = (math.log(2*tol/(b-a))) / math.log(0.5) calculates max iterations 
+needed: guarantees interval shrinks below tol (as discussed earlier).  
+Note: t is float, so loop runs while iteration < t until convergence or max 
+reached 
+Final_answer is the midpoint of the final interval (approximate root). 
+fv = f(final_answer) evaluates function there (should be near zero). Prints 
+iterations, final interval, root, and f(root).  
+Golden section method: 
+This code implements the Golden Section Search to find the minimum of a 
+unimodal function within interval [a, b]. 
+R = (3 - math.sqrt(5)) / 2 ≈ 0.382 is the optimal ratio derived from the 
+golden ratio φ = (1+√5)/2. It divides the interval such that x1 = a + R*(b-a) and 
+x2 = b - R*(b-a) maintain symmetric reuse properties. 
+Computes two interior points x1 < x2 and their function values f1 = f(x1), f2 = 
+f(x2). These points divide [a,b] in golden ratio, enabling efficient interval 
+reduction. 
+t = (math.log(2*tol/(b-a))) / math.log(1-R) estimates max iterations 
+needed. Since each iteration shrinks interval by factor 1-R ≈ 0.618, it guarantees 
+|b-a| < tol after t steps (similar to bisection's 0.5 factor) 
+Final minimum approximation: (a+b)/2 with function value f(final_answer). 
+Shows iterations and final bracketing interval. 
+Note: Assumes unimodal function (single minimum in [a,b]). More efficient than 
+ternary search (~30% fewer evaluations). 
+Fibonacci method: 
+Fibonacci Search finds the minimum of a unimodal function using Fibonacci 
+numbers to systematically shrink the search interval. 
+Generates sequence [1, 1, 2, 3, 5, 8, 13, ...] up to 100 terms. These 
+act as interval "sizes" that decrease predictably. 
+py 
+if fib[i] >= 1/(2*tol): n = i - 1 
+Picks largest n where fib[n+1] ≈ 1/(2*tol). This ensures after n steps, final 
+interval width < tol. 
+After n steps, the interval shrinks from fib[n+1] to fib[2]=1 units. Final answer 
+(a+b)/2 approximates minimum location. 
+Why it works: Fibonacci ratios converge to golden ratio (0.618), matching optimal 
+1D search. Integer-based, no irrational math needed. Same efficiency as golden 
+section but deterministic. 
+Steepest ascent method: 
+This code implements the Steepest Ascent (Gradient Ascent) method to maximize 
+a 1D function. 
+Numerical Gradient Setup 
+h = 1e-7 
+df = lambda x: (f(x + h) - f(x - h)) / (2 * h)  # Central 
+difference 
+Approximates derivative using central finite difference: accuracy O(h²), stable for 
+smooth functions. 
+Main Optimization Loop 
+while iteration < max_iter: 
+grad = df(x)      
+# Current slope 
+fx = f(x)         
+# Current value 
+if abs(grad) < tol:  # Gradient near zero = maximum 
+break 
+x = x + alpha * grad  # Move uphill 
+Core idea: At each step, move in the direction of steepest ascent (+gradient) by 
+fixed step size alpha. 
+Progress Monitoring 
+Prints table showing iteration progress: 
+Iteration 
+x 
+f(x) 
+f’(x) 
+1 
+2.300000 
+Convergence Criteria 
+1.234567 
+0.876543 
+Stops when |gradient| < tol (flat region = maximum) or hits max_iter=1000. 
+Key Features 
+● Fixed step size: alpha controls aggressiveness (too large = overshoot, too 
+small = slow) 
+● Gradient-based: Faster than bracketing methods for well-behaved functions 
+● Interactive input: User enters func_str like "-x**2 + 4*x - 1" 
+Example Usage 
+Enter function: -x**2 + 4*x - 1  # Parabola opening down 
+x0 = 0, alpha = 0.1, tol = 0.0001 
+Converges to maximum at x ≈ 2.0 where f'(x) = -2x + 4 = 0. 
+Note: Fixed alpha can fail on ill-conditioned problems - line search variants adapt 
+step size dynamically. 
